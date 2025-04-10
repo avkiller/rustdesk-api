@@ -1,4 +1,4 @@
-name: Build
+name: Build for fireworld
 
 on:
   workflow_dispatch:
@@ -146,7 +146,7 @@ jobs:
         #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate Changelog
-      if: false
+        if: false
         run: npx changelogithub # or changelogithub@0.12 if ensure the stable result
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -352,7 +352,7 @@ jobs:
 
   #
   docker-manifest:
-  if: false
+    if: false
     name: Push Docker Manifest
     needs: docker
     runs-on: ubuntu-latest
