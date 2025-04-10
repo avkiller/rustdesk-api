@@ -21,7 +21,6 @@ jobs:
           # 获取所有 Tag（确保包含远程 Tag）
           git fetch --tags
           # 按版本号排序获取最新 Tag（兼容语义化版本）
-          LATEST_TAG=$(git tag --sort=-v:refname | head -n 1)
           LATEST_TAG=$(git tag --sort=-v:refname | head -n 1 || echo "nightly")
 
           # 去掉 Tag 名称中的 'v' 前缀
@@ -35,13 +34,13 @@ jobs:
         # 处理无 Tag 的情况（可选：报错或默认值）
         if [ -z "$VERSION" ]; then
           echo "::error::No valid tag found!"
-          VERSION="2.0.0"
+          VERSION="0.0.0"
         fi
 
         # 将版本号写入环境变量
         echo "VERSION=$VERSION" >> $GITHUB_ENV
 
-        echo "Final version: $Version"
+        echo "Final version: $VERSION"
         echo "Final LATEST_TAG: $LATEST_TAG"
 
     - name: Write version to resources/version
