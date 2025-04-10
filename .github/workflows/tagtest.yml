@@ -1,0 +1,39 @@
+name: Build for fireworld
+
+on:
+  workflow_dispatch:
+env:
+  LATEST_TAG: latest  # 默认值，非手动触发时生效
+
+jobs:
+  your-job:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # 必须！获取完整历史记录
+
+    - name: Set LATEST_TAG (Manual Trigger)
+      if: ${{ github.event_name == 'workflow_dispatch' }}
+      run: |
+        # 获取远程所有 Tag
+        git fetch --tags
+        # 按版本号排序获取最新 Tag
+        LATEST_TAG=$(git tag --sort=-v:refname | head -n 1 || echo "")
+        # 处理无 Tag 的情况（保留默认值或报错）
+        if [ -z "$LATEST_TAG" ]; then
+          echo "::warning::No tags found, keeping default LATEST_TAG=$LATEST_TAG"
+        else
+          echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
+        fi
+        echo "Final LATEST_TAG: $LATEST_TAG"
+
+    - name: Other Steps
+      run: |
+        echo "当前 LATEST_TAG: ${{ env.LATEST_TAG }}"
+    - name: Debug Output
+      run: |
+        echo "最终生效的 LATEST_TAG: ${{ env.LATEST_TAG }}"
+
+
