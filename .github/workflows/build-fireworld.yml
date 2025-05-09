@@ -47,7 +47,7 @@ jobs:
       fail-fast: false
       matrix:
         job:
-          # - { platform: "amd64", goos: "linux", file_ext: "tar.gz" }
+          - { platform: "amd64", goos: "linux", file_ext: "tar.gz" }
           # - { platform: "arm64", goos: "linux", file_ext: "tar.gz" }
           # - { platform: "armv7l", goos: "linux", file_ext: "tar.gz" }
           - { platform: "amd64", goos: "windows", file_ext: "zip" }
