@@ -58,7 +58,7 @@ jobs:
           fetch-depth: 0
       - uses: actions/checkout@v4
         with:
-          repository: lejianwen/rustdesk-api-web
+          repository: avkiller/rustdesk-api-web
           path: rustdesk-api-web
           ref: master
 
