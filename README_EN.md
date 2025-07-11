@@ -94,8 +94,8 @@ displaying data.Frontend code is available at [rustdesk-api-web](https://github.
     - For `OIDC`, you must set the `Issuer`. And `Scopes` is optional which default is `openid,email,profile`, please make sure this `Oauth App` can access `sub`, `email` and `preferred_username`
     - Create a `GitHub OAuth App`
       at `Settings` -> `Developer settings` -> `OAuth Apps` -> `New OAuth App` [here](https://github.com/settings/developers).
-    - Set the `Authorization callback URL` to `http://<your server[:port]>/api/oauth/callback`,
-      e.g., `http://127.0.0.1:21114/api/oauth/callback`.
+    - Set the `Authorization callback URL` to `http://<your server[:port]>/api/oidc/callback`,
+      e.g., `http://127.0.0.1:21114/api/oidc/callback`.
    
 7. Login logs
 8. Connection logs
@@ -252,10 +252,17 @@ Download the release from [release](https://github.com/lejianwen/rustdesk-api/re
 4. Run:
     ```bash
     # Run directly
-    go run cmd/apimain.go
-    # Or generate and run the API using generate_api.go
-    go generate generate_api.go
-    ```
+   go run cmd/apimain.go
+   # Or generate and run the API using generate_api.go
+   go generate generate_api.go
+   ```
+   > **Note:** When using `go run` or the compiled binary, the `conf` and `resources`
+   > directories must exist relative to the current working directory. If you run
+   > the program from another location, specify absolute paths with `-c` and the
+   > `RUSTDESK_API_GIN_RESOURCES_PATH` environment variable. Example:
+   > ```bash
+   > RUSTDESK_API_GIN_RESOURCES_PATH=/opt/rustdesk-api/resources ./apimain -c /opt/rustdesk-api/conf/config.yaml
+   > ```
 
 5. To compile, change to the project root directory. For Windows, run `build.bat`, and for Linux, run `build.sh`. After
    compiling, the corresponding executables will be generated in the `release` directory. Run the compiled executables
