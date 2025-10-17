@@ -54,7 +54,6 @@
     - 自动获取ID服务器和KEY
     - 自动获取地址簿
     - 游客通过临时分享链接直接远程到设备
-    - v2 Preview
 - CLI
     - 重置管理员密码
 
@@ -130,6 +129,7 @@
 5. 现已支持`v2 Preview`，访问路径是`/webclient2`
    ![webclientv2](./docs/webclientv2.png)
 6. `v2 preview` 部署，参考[WIKI](https://github.com/lejianwen/rustdesk-api/wiki)
+
 
 
 ### 自动化文档: 使用 Swag 生成 API 文档，方便开发者理解和使用 API。
